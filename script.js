@@ -4,7 +4,7 @@ const apiCoord = "https://api.openweathermap.org/data/2.5/onecall?";
 
 var cities = [];
 var searchtext;
-let lat, long;
+let lat, long, date, icon, temp, uvi, humidity, wind_speed, city;
 
 
 
@@ -18,6 +18,7 @@ function todayWeather(searchtext) {
           console.log(data);
           lat = data.coord.lat;
           long = data.coord.lon;
+          icon = data.weather[0].icon;
       
           //launch getForecast function
          getForecast(searchtext);
@@ -34,6 +35,9 @@ function todayWeather(searchtext) {
     })
 };
 
+
+
+
   function getForecast(searchtext) {
       fetch(apiCoord + "&lat=" + lat + "&lon=" + long + "&units=metric" + apiKey)
       .then(function(response){
@@ -42,8 +46,29 @@ function todayWeather(searchtext) {
       )
       .then(function(data){
       console.log(data);
-    })
-  };
+    
+    icon = data.current.weather[0].icon;
+    //get date
+    date = new Date().toLocaleDateString("en-US", {
+      timeZone: `${data.timezone}`,
+    });
+    $("#city").html(
+        `${searchtext.toUpperCase()}, ${date} <img src='http://openweathermap.org/img/w/${icon}.png'/>`
+      );
+      // set todays temp
+      $("#temp").html(` ${data.current.temp} C`);
+      // set wind
+      $("#wind").html(` ${data.current.wind_speed} Kmh`);
+      // set humidity
+      $("#humidity").html(` ${data.current.humidity} %`);
+      // set uv
+      $("#uv").html(`UV Index: <span id="uvI">${data.current.uvi}</span>`);
+      $("#uvI").css("background-color", bg);
+      //clear previous 5 day forecast
+      $(".dayCards").html("");
+    
+    
+ })} ;
 
 
 $("#searchBtn").on("click", function (){
@@ -62,8 +87,6 @@ $("#searchBtn").on("click", function (){
     fillCityList();
 
 });
-
-
 
 
 function fillCityList() {
