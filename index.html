@@ -12,25 +12,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!--Jumbotron for Title-->
+    <!--Jumbotron-->
     <div class="jumbotron container-fluid mt-2 text-center p-2">
         <h1>Weather Dashboard</h1>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <!--Search-->
         <div class="row">
-            <div class="col-sm-4 bg-light">
-                <!--Here we create an HTML form for handling the inputs-->
-                <h4 class="pt-1"><strong>Enter a City:</strong></h4>
-                <!--Here we create the text box for capturing the search city Name-->
-                <div class="input-group mb-3">
+            <div class="col-md-3 bg-light">
+            
+                
+  
+                <form id="form">
+                    <label for="search" class="form-label h1">Enter a city:</label>
                     <input type="text" class="form-control"id="search" aria-label="City Search" aria-describedby="search-button">
-                    <div class="input-group-append">
-                        <button class="" id="searchBtn"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-                <!--section for search city history-->
-                <button class=" btn btn-primary" type="button" id="clear">Clear</button>
+                </form>
+        
+                <button class=" btn btn-primary" type="button" id="searchBtn">search</button>
                 <ul class="list-group">
 
                 </ul>
@@ -54,30 +52,36 @@
                             <p id="5Img0"></p>
                             <p>Temp:<span id="5Temp0"></span></p>
                             <p>Humidity:<span id="5Humidity0"></span></p>
+                            <p>Wind:<span id="5Wind0"></span></p>
+
                         </div>
                         <div class="col-sm-2">
                             <p id="5Date1"></p>
                             <p id="5Img1"></p>
                             <p>Temp:<span id="5Temp1"></span></p>
                             <p>Humidity:<span id="5Humidity1"></span></p>
+                            <p>Wind:<span id="5Wind0"></span></p>
                         </div>
                         <div class="col-sm-2">
                             <p id="5Date2"></p>
                             <p id="5Img2"></p>
                             <p>Temp:<span id="5Temp2"></span></p>
                             <p>Humidity:<span id="5Humidity2"></span></p>
+                            <p>Wind:<span id="5Wind0"></span></p>
                         </div>
                         <div class="col-sm-2">
                             <p id="5Date3"></p>
                             <p id="5Img3"></p>
                             <p>Temp:<span id="5Temp3"></span></p>
                             <p>Humidity:<span id="5Humidity3"></span></p>
+                            <p>Wind:<span id="5Wind0"></span></p>
                         </div>
                         <div class="col-sm-2">
                             <p id="5Date4"></p>
                             <p id="5Img4"></p>
                             <p>Temp:<span id="5Temp4"></span></p>
                             <p>Humidity:<span id="5Humidity4"></span></p>
+                            <p>Wind:<span id="5Wind0"></span></p>
                         </div>
                     </div>
                 </div>
@@ -85,5 +89,11 @@
             </div>
         </div>
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <script src="script.js"></script>
+
     </body>
     </html>
