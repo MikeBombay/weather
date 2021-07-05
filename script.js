@@ -123,9 +123,22 @@ function fillCityList() {
     };
     $("#cityList").html("");
     for (let i=0; i < cities.length; i++){
-        $("#cityList").append(`<li id="${i}"class="list-group-item list-group-item-secondary text-center my-2 font-weight-bold mt-2">${cities[i]}</li>`)
+        $("#cityList").append(`<li id="${i}"class="list-group-item list-group-item text-center my-2 font-weight-bold mt-2">${cities[i]}</li>`)
     }};
 
     fillCityList();
 
+    //get forecast from listed cities
+    $(".list-group-item").on("click", function () {
+        savedtext= $(this).html().trim();
+        todayWeather(savedtext);
+      });
 
+      //clear saved cities from local storage and remove list from page
+      $("#clearBtn").on("click", function (event){
+        event.preventDefault();
+        cities=[];
+        localStorage.removeItem("citiesKey");
+        document.location.reload();
+    
+    });
