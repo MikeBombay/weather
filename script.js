@@ -15,16 +15,16 @@ function todayWeather(searchtext) {
       if (response.ok) {
         response.json().then(function (data) {
           //get lat/long for daily forecast
-          console.log(data);
+          
           lat = data.coord.lat;
           long = data.coord.lon;
           icon = data.weather[0].icon;
       
-          //launch getForecast function
+          //run getForecast function
          getForecast(searchtext);
         });
       } else {
-        // if not successful,  remove item from array/storage and redirect to homepage
+        //move items down list
         cities.shift();
         // send to storage
         localStorage.setItem("cities", JSON.stringify(searchtext));
@@ -36,7 +36,7 @@ function todayWeather(searchtext) {
 };
 
 
-//
+//getForecast function gets weather data for six days and displays certain aspects in respective parts of the page
 
   function getForecast(searchtext) {
       fetch(apiCoord + "&lat=" + lat + "&lon=" + long + "&units=metric" + apiKey)
