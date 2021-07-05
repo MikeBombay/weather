@@ -46,6 +46,18 @@ function todayWeather(searchtext) {
       )
       .then(function(data){
       console.log(data);
+
+    //if statements for UV bg color
+    if (data.current.uvi <= 5) {
+        bgc = "lightgreen";
+      }
+      if (data.current.uvi > 5) {
+        bgc = "lightyellow";
+      }
+      if (data.current.uvi > 10) {
+        bgc = "lightorange";
+      }
+     
     
     icon = data.current.weather[0].icon;
     //get date
@@ -72,12 +84,12 @@ function todayWeather(searchtext) {
         });
       //append html
         $(".5day").append
-        (`<div class="col-sm-2 bg-light ">
+        (`<div class="col-sm-2 bg-light mr-2">
         <p id="5Date0">${date}</p>
         <p id="5Img0"><img src='http://openweathermap.org/img/w/${icon}.png'/></p>
-        <p>Temp:<span id="5Temp0"> ${data.daily[i].temp.day} C</span></p>
-        <p>HumidX:<span id="5Humidity0">${data.daily[i].humidity} %</span></p>
-        <p>Wind:<span id="5Wind0">${data.daily[i].wind_speed} </span>kmh</p>
+        <p>Temp: <span id="5Temp0"> ${data.daily[i].temp.day} C</span></p>
+        <p>HumidX: <span id="5Humidity0">${data.daily[i].humidity} %</span></p>
+        <p>Wind: <span id="5Wind0">${data.daily[i].wind_speed} </span>kmh</p>
         </div>`)}
     
  })} ;
@@ -100,7 +112,7 @@ $("#searchBtn").on("click", function (){
 
 });
 
-//populate list of cities, limit to 8
+//populate list of cities from local storage limit to 8
 
 function fillCityList() {
     cities = JSON.parse(localStorage.getItem("citiesKey"));

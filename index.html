@@ -19,21 +19,22 @@
     <div class="container-fluid">
         <!--Search-->
         <div class="row">
-            <div class="col-sm-4 bg-light">
+            <div class="col-sm-3 bg-light pl-2">
             
   
                 <form id="form">
-                    <label for="search" class="form-label h4">Enter a city:</label>
+                    <label for="search" class="form-label h4 ml-4">Enter a city:</label>
                     <input type="text" class="form-control"id="search" aria-label="City Search" aria-describedby="search-button">
                 </form>
         
-                <button class=" btn btn-primary" type="button" id="searchBtn">search</button>
+                <button class=" btn btn-primary mt-1 mr-1" type="button" id="searchBtn">search</button>
+                <button class=" btn btn-primary mt-1 mr-1" type="button" id="clearBtn">clear</button>
                 <ul class="list-group" id="cityList">
                 </ul>
             </div>   
             <!-- today's forecast-->
-            <div class="col-sm-8">
-                <div class="row ml-2 border border-dark rounded">
+            <div class="col-sm-9">
+                <div class="row mr-1 border border-dark rounded">
                     <div class="col-sm-12" id="current-weather">
                         <h3 class="city-name mb-1 mt-2 bolder" id="city"></h3>
                         <p>Temperature:<span class="current" id="temp"></span></p>
