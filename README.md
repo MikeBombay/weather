@@ -28,4 +28,4 @@ Deployed:
 
 Deployed: https://mikebombay.github.io/weather/
 
-Screenshot:
+Screenshot:![screenshot png](https://user-images.githubusercontent.com/82775499/124411745-22a49900-dd1b-11eb-90ae-fd380647db9c.png)
