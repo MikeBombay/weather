@@ -4,11 +4,11 @@ const apiCoord = "https://api.openweathermap.org/data/2.5/onecall?";
 
 var cities = [];
 var searchtext;
-let lat, long, date, icon, temp, uvi, humidity, wind_speed, city;
+let lat, long, date, icon, temp, uvi, humidity, wind_speed, city, bgc, name;
 
 
 
-
+//fetch 
 function todayWeather(searchtext) {
     fetch(apiCity + searchtext + apiKey).then(function (response) {
       // request ok
@@ -36,7 +36,7 @@ function todayWeather(searchtext) {
 };
 
 
-
+//
 
   function getForecast(searchtext) {
       fetch(apiCoord + "&lat=" + lat + "&lon=" + long + "&units=metric" + apiKey)
@@ -55,22 +55,34 @@ function todayWeather(searchtext) {
     $("#city").html(
         `${searchtext.toUpperCase()}, ${date} <img src='http://openweathermap.org/img/w/${icon}.png'/>`
       );
-      // set todays temp
+      // today's weather conditions
       $("#temp").html(` ${data.current.temp} C`);
-      // set wind
-      $("#wind").html(` ${data.current.wind_speed} Kmh`);
-      // set humidity
+      $("#wind").html(` ${data.current.wind_speed} Km/h`);
       $("#humidity").html(` ${data.current.humidity} %`);
-      // set uv
-      $("#uv").html(`UV Index: <span id="uvI">${data.current.uvi}</span>`);
-      $("#uvI").css("background-color", bg);
-      //clear previous 5 day forecast
-      $(".dayCards").html("");
-    
+      $("#uv").html(`<span id="uvI"> ${data.current.uvi}</span>`);
+      $("#uvI").css("background-color", bgc);
+     //5 day weather conditions
+      $(".5day").html("");
+      for (let i = 1; i < 6; i++) {
+        //get icon
+        icon = data.daily[i].weather[0].icon;
+        //convert date
+        date = new Date(data.daily[i].dt * 1000).toLocaleDateString("en-US", {
+          timeZone: `${data.timezone}`,
+        });
+      //append html
+        $(".5day").append
+        (`<div class="col-sm-2 bg-light ">
+        <p id="5Date0">${date}</p>
+        <p id="5Img0"><img src='http://openweathermap.org/img/w/${icon}.png'/></p>
+        <p>Temp:<span id="5Temp0"> ${data.daily[i].temp.day} C</span></p>
+        <p>HumidX:<span id="5Humidity0">${data.daily[i].humidity} %</span></p>
+        <p>Wind:<span id="5Wind0">${data.daily[i].wind_speed} </span>kmh</p>
+        </div>`)}
     
  })} ;
 
-
+//click for search and save city data to local storage in cities array
 $("#searchBtn").on("click", function (){
     searchtext = $("#search").val();
     console.log(searchtext)
@@ -88,12 +100,13 @@ $("#searchBtn").on("click", function (){
 
 });
 
+//populate list of cities, limit to 8
 
 function fillCityList() {
     cities = JSON.parse(localStorage.getItem("citiesKey"));
     if (cities == null) cities = [];
     //limit length
-    if (cities.length > 10) {
+    if (cities.length > 8) {
         cities.pop();
     };
     $("#cityList").html("");
@@ -104,4 +117,3 @@ function fillCityList() {
     fillCityList();
 
 
-//`<li id="${i}"class="list-group-item list-group-item-secondary text-center my-2 font-weight-bold mt-3">
